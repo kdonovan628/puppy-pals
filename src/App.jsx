@@ -14,14 +14,20 @@ const App = () => {
 
   return (
     <div className="App">
-      <p>{featPupId && <p> {featPupId} </p>}</p>
-      {puppies.map((puppy) => {
-        return (
-          <p onClick={()=>{ setFeatPupId(puppy.id)}}>
-            {puppy.name}
-          </p>
-        );
-      })}
+      {featPupId && featuredPup && (
+        <div>
+          <h2>{featuredPup.name}</h2>
+          <ul>
+            <li>Age: {featuredPup.age}</li>
+            <li>Email: {featuredPup.email}</li>
+          </ul>
+        </div>
+      )}
+      {puppies.map((puppy) => (
+        <p key={puppy.id} onClick={() => setFeatPupId(puppy.id)}>
+          {puppy.name}
+        </p>
+      ))}
     </div>
   );
 }
