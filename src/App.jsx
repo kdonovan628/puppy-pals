@@ -1,12 +1,29 @@
+import { useState } from 'react'
 import './App.css'
+import {puppyList} from './data.js'
 
-function App() {
+const App = () => {
+
+  const [puppies, setPuppies] = useState(puppyList);
+  const [featPupId, setFeatPupId] = useState(null);
+  const featuredPup = puppies.find((pup)=> pup.id === featPupId)
+
+  console.log(featuredPup)
+  const handleClick = () => {
+  }
 
   return (
-    <>
-      <h1>Puppy Pals</h1>
-    </>
-  )
+    <div className="App">
+      <p>{featPupId && <p> {featPupId} </p>}</p>
+      {puppies.map((puppy) => {
+        return (
+          <p onClick={()=>{ setFeatPupId(puppy.id)}}>
+            {puppy.name}
+          </p>
+        );
+      })}
+    </div>
+  );
 }
 
 export default App
